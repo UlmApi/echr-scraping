@@ -22,3 +22,4 @@ with open("listOfIDs.txt", 'w') as IDlist:
         jsonObject = json.load(open("%d.txt"%(start),'r'))
         for item in jsonObject['results']:
             IDlist.write("%s%s"%(item['columns']['itemid'], os.linesep))
+        sleep(100)
