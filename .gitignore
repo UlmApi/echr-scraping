@@ -1,1 +1,4 @@
 documents/
+*.db
+*.txt
+*.json
