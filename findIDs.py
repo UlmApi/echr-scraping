@@ -13,7 +13,7 @@ from time import sleep
 with open("listOfIDs.txt", 'w') as IDlist:
     #fetch all index pages up to the current result count
     for start in range(0,max_documents, length):
-        with open("%d.txt"%(start), 'wb') as f:
+        with open("%d.json"%(start), 'wb') as f:
             url = base_url + "&start=%d&length=%d"%(start, length)
             r = requests.get(url, stream=True)
             if not r.ok:
@@ -21,7 +21,7 @@ with open("listOfIDs.txt", 'w') as IDlist:
                 continue
             for block in r.iter_content(1024):
                 f.write(block)
-        jsonObject = json.load(open("%d.txt"%(start),'r'))
+        jsonObject = json.load(open("%d.json"%(start),'r'))
         for item in jsonObject['results']:
             IDlist.write("%s%s"%(item['columns']['itemid'], os.linesep))
         sleep(100)
