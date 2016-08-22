@@ -13,6 +13,7 @@ from time import sleep
 with open("listOfIDs.txt", 'w') as IDlist:
     #fetch all index pages up to the current result count
     for start in range(0,max_documents, length):
+        print("Fetching and writing %d.json"%(start))
         with open("%d.json"%(start), 'wb') as f:
             url = base_url + "&start=%d&length=%d"%(start, length)
             r = requests.get(url, stream=True)

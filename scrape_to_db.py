@@ -9,7 +9,10 @@ def parseJSON(name):
     data = json.load(open(name))
     
     #we assume all keysets are the same...
-    keyset = data["results"][0]['columns'].keys()
+    try:
+        keyset = data["results"][0]['columns'].keys()
+    except IndexError: #occurs when the file is empty
+        return
     
     try:
         c.execute('''CREATE TABLE echrtable
