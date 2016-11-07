@@ -6,6 +6,6 @@ python3 findIDs.py
 
 #parse all JSON files into the sqlite db (assumes only the above output files exist in the current dir...)
 for i in `ls *.json`; do
-  python scrate_to_db.py "$i"
+  python scrape_to_db.py "$i"
 done
 
