@@ -1,3 +1,5 @@
+#!/usr/bin/python3
+
 import json
 import sqlite3
 import sys
@@ -7,20 +9,20 @@ c = conn.cursor()
 
 def parseJSON(name):
     data = json.load(open(name))
-    
+
     #we assume all keysets are the same...
     try:
         keyset = data["results"][0]['columns'].keys()
     except IndexError: #occurs when the file is empty
         return
-    
+
     try:
         c.execute('''CREATE TABLE echrtable
                  ('''+ " text, ".join(data["results"][0]['columns'].keys()) + '''text)''')
     except sqlite3.OperationalError:
         pass
-    
-    
+
+
     for item in data["results"]:
         #querystring = '"' + '","'.join(item['columns'].values()) + '"'
         #c.execute("INSERT INTO echrtabel VALUES (" + querystring + ")")
